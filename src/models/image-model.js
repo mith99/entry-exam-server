@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+const mongoose = require("mongoose");
 
 //creating db schema for images
 const ImageSchema = new mongoose.Schema(
@@ -8,7 +8,7 @@ const ImageSchema = new mongoose.Schema(
             required:[true, 'name required'],
             trim:true,
         },
-        value:{
+        path:{
             type:String,
             required:[true, 'Value required'],
             trim:true,
@@ -17,10 +17,14 @@ const ImageSchema = new mongoose.Schema(
             type:Boolean,
             trim:true,
         },
+        product:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Products"
+        }
         
     }
 
 )
 
-const image = mongoose.Model('Images', ImageSchema);
+const image = mongoose.model('Images', ImageSchema);
 module.exports = image;
